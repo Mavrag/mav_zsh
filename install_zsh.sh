@@ -15,7 +15,8 @@ else
     echo "Unsupported OS"
     exit 1
 fi
-
+# Download .p10k.zsh
+curl -f https://raw.githubusercontent.com/Mavrag/mav_zsh/main/.p10k.zsh -o ~/.p10k.zsh
 # Install oh-my-zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
@@ -47,7 +48,5 @@ sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 # Add plugins to .zshrc
 sed -i 's/^plugins=.*/plugins=( git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd autojump alias-tips )/' ~/.zshrc
 
-# Download .p10k.zsh
-curl -f https://raw.githubusercontent.com/Mavrag/mav_zsh/main/.p10k.zsh -o ~/.p10k.zsh
 echo "The installation was successful!"
 exit 0
