@@ -47,7 +47,6 @@ sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 
 # Add plugins to .zshrc
 sed -i 's/^plugins=.*/plugins=( git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd autojump alias-tips )/' ~/.zshrc
-echo "# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> ~/.zshrc
+sed -i '$ a\[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' ~/.zshrc
 echo "The installation was successful!"
 exit 0
