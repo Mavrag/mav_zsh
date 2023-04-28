@@ -29,7 +29,6 @@ git clone https://github.com/lukechilds/zsh-better-npm-completion.git ~/.oh-my-z
 git clone https://github.com/olivierverdier/zsh-git-prompt.git ~/.oh-my-zsh/custom/plugins/zsh-git-prompt
 git clone https://github.com/chrissicool/zsh-256color.git ~/.oh-my-zsh/custom/plugins/zsh-256color
 git clone https://github.com/clvv/fasd.git ~/.oh-my-zsh/custom/plugins/fasd
-git clone https://github.com/wting/autojump.git ~/.oh-my-zsh/custom/plugins/autojump
 git clone https://github.com/djui/alias-tips.git ~/.oh-my-zsh/custom/plugins/alias-tips
 
 # Install fzf
@@ -46,7 +45,7 @@ sudo chsh -s $(which zsh) $USER
 sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' ~/.zshrc
 
 # Add plugins to .zshrc
-sed -i 's/^plugins=.*/plugins=( git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd autojump alias-tips )/' ~/.zshrc
+sed -i 's/^plugins=.*/plugins=( git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd alias-tips )/' ~/.zshrc
 sed -i '$ a\[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' ~/.zshrc
 echo "The installation was successful!"
 exit 0
