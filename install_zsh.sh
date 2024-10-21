@@ -85,7 +85,7 @@ install_packages() {
     echo -e "${GREEN}Updating package lists...${NC}"
     eval $PM_UPDATE > /dev/null
     echo -e "${GREEN}Installing required packages...${NC}"
-    eval $PM_INSTALL zsh wget curl git > /dev/null
+    eval $PM_INSTALL zsh wget curl git python3 > /dev/null
 }
 
 # Function to install oh-my-zsh
@@ -121,7 +121,7 @@ install_plugins() {
     clone_git_repo https://github.com/olivierverdier/zsh-git-prompt.git "${ZSH_CUSTOM}/plugins/zsh-git-prompt"
     clone_git_repo https://github.com/chrissicool/zsh-256color.git "${ZSH_CUSTOM}/plugins/zsh-256color"
     clone_git_repo https://github.com/clvv/fasd.git "${ZSH_CUSTOM}/plugins/fasd"
-    clone_git_repo https://github.com/djui/alias-tips.git "${ZSH_CUSTOM}/plugins/alias-tips"
+    # Removed alias-tips plugin
 }
 
 # Function to install fzf
@@ -168,7 +168,8 @@ update_zshrc() {
 
     echo -e "${GREEN}Updating .zshrc configuration...${NC}"
     sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$ZSHRC"
-    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd alias-tips)/' "$ZSHRC"
+    # Removed alias-tips from plugins
+    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd)/' "$ZSHRC"
     grep -qxF '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' "$ZSHRC" || echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> "$ZSHRC"
 }
 
