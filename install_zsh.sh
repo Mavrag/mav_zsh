@@ -169,7 +169,7 @@ update_zshrc() {
     echo -e "${GREEN}Updating .zshrc configuration...${NC}"
     sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$ZSHRC"
     # Removed alias-tips from plugins
-    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd)/' "$ZSHRC"
+    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd docker-compose docker)/' "$ZSHRC"
     grep -qxF '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' "$ZSHRC" || echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> "$ZSHRC"
 }
 
