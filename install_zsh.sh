@@ -88,25 +88,6 @@ install_packages() {
     eval $PM_INSTALL zsh wget curl git > /dev/null
 }
 
-# Function to install additional dependencies
-install_dependencies() {
-    echo -e "${GREEN}Installing additional dependencies...${NC}"
-    case "$OS" in
-        ubuntu|debian|kali)
-            eval $PM_INSTALL python3-virtualenv > /dev/null
-            eval $PM_INSTALL rbw > /dev/null
-            ;;
-        centos|rhel|fedora)
-            eval $PM_INSTALL python3-virtualenv > /dev/null
-            eval $PM_INSTALL rbw > /dev/null
-            ;;
-        arch|manjaro)
-            eval $PM_INSTALL python-virtualenv > /dev/null
-            eval $PM_INSTALL rbw > /dev/null
-            ;;
-    esac
-}
-
 # Function to install oh-my-zsh
 install_oh_my_zsh() {
     if [ ! -d "$USER_HOME/.oh-my-zsh" ]; then
