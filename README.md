@@ -42,7 +42,7 @@ This repository provides an automated script to install and configure Zsh, Oh My
 To install and configure Zsh with Oh My Zsh, plugins, and the Powerlevel10k theme, run the following command in your terminal:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/Mavrag/mav_zsh/main/install_zsh.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/Mavrag/mavrag-zsh-setup/main/install_zsh.sh)"
 ```
 
 ## Usage Instructions
