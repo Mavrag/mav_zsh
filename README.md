@@ -15,7 +15,6 @@ This repository provides an automated script to install and configure Zsh, Oh My
   - [zsh-git-prompt](https://github.com/olivierverdier/zsh-git-prompt)
   - [zsh-256color](https://github.com/chrissicool/zsh-256color)
   - [fasd](https://github.com/clvv/fasd)
-  - [alias-tips](https://github.com/djui/alias-tips)
 - **Installs [fzf](https://github.com/junegunn/fzf)**: A command-line fuzzy finder.
 - **Installs [Powerlevel10k Theme](https://github.com/romkatv/powerlevel10k)**: A fast and customizable theme for Zsh.
 - **Configures Zsh**:
