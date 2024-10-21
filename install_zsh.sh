@@ -85,7 +85,26 @@ install_packages() {
     echo -e "${GREEN}Updating package lists...${NC}"
     eval $PM_UPDATE > /dev/null
     echo -e "${GREEN}Installing required packages...${NC}"
-    eval $PM_INSTALL zsh wget curl git python3 > /dev/null
+    eval $PM_INSTALL zsh wget curl git > /dev/null
+}
+
+# Function to install additional dependencies
+install_dependencies() {
+    echo -e "${GREEN}Installing additional dependencies...${NC}"
+    case "$OS" in
+        ubuntu|debian|kali)
+            eval $PM_INSTALL python3-virtualenv > /dev/null
+            eval $PM_INSTALL rbw > /dev/null
+            ;;
+        centos|rhel|fedora)
+            eval $PM_INSTALL python3-virtualenv > /dev/null
+            eval $PM_INSTALL rbw > /dev/null
+            ;;
+        arch|manjaro)
+            eval $PM_INSTALL python-virtualenv > /dev/null
+            eval $PM_INSTALL rbw > /dev/null
+            ;;
+    esac
 }
 
 # Function to install oh-my-zsh
@@ -98,7 +117,7 @@ install_oh_my_zsh() {
     fi
 }
 
-# Function to clone git repositories
+# Function to clone git repositories (for custom plugins/themes)
 clone_git_repo() {
     local REPO_URL=$1
     local DEST_DIR=$2
@@ -113,6 +132,7 @@ clone_git_repo() {
 install_plugins() {
     echo -e "${GREEN}Installing plugins...${NC}"
     ZSH_CUSTOM="${ZSH_CUSTOM:-$USER_HOME/.oh-my-zsh/custom}"
+    # Custom plugins (if any) can be cloned here
     clone_git_repo https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
     clone_git_repo https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
     clone_git_repo https://github.com/zsh-users/zsh-history-substring-search.git "${ZSH_CUSTOM}/plugins/zsh-history-substring-search"
@@ -121,7 +141,6 @@ install_plugins() {
     clone_git_repo https://github.com/olivierverdier/zsh-git-prompt.git "${ZSH_CUSTOM}/plugins/zsh-git-prompt"
     clone_git_repo https://github.com/chrissicool/zsh-256color.git "${ZSH_CUSTOM}/plugins/zsh-256color"
     clone_git_repo https://github.com/clvv/fasd.git "${ZSH_CUSTOM}/plugins/fasd"
-    # Removed alias-tips plugin
 }
 
 # Function to install fzf
@@ -168,8 +187,7 @@ update_zshrc() {
 
     echo -e "${GREEN}Updating .zshrc configuration...${NC}"
     sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$ZSHRC"
-    # Removed alias-tips from plugins
-    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd)/' "$ZSHRC"
+    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd zsh-interactive-cd virtualenv rbw)/' "$ZSHRC"
     grep -qxF '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' "$ZSHRC" || echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> "$ZSHRC"
 }
 
@@ -185,6 +203,7 @@ main() {
     detect_os
     check_sudo
     install_packages
+    install_dependencies
     install_oh_my_zsh
     install_plugins
     install_fzf
