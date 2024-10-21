@@ -85,7 +85,7 @@ install_packages() {
     echo -e "${GREEN}Updating package lists...${NC}"
     eval $PM_UPDATE > /dev/null
     echo -e "${GREEN}Installing required packages...${NC}"
-    eval $PM_INSTALL zsh wget curl git > /dev/null
+    eval $PM_INSTALL zsh wget curl git python3 > /dev/null
 }
 
 # Function to install oh-my-zsh
@@ -98,7 +98,7 @@ install_oh_my_zsh() {
     fi
 }
 
-# Function to clone git repositories (for custom plugins/themes)
+# Function to clone git repositories
 clone_git_repo() {
     local REPO_URL=$1
     local DEST_DIR=$2
@@ -113,7 +113,6 @@ clone_git_repo() {
 install_plugins() {
     echo -e "${GREEN}Installing plugins...${NC}"
     ZSH_CUSTOM="${ZSH_CUSTOM:-$USER_HOME/.oh-my-zsh/custom}"
-    # Custom plugins (if any) can be cloned here
     clone_git_repo https://github.com/zsh-users/zsh-autosuggestions "${ZSH_CUSTOM}/plugins/zsh-autosuggestions"
     clone_git_repo https://github.com/zsh-users/zsh-syntax-highlighting.git "${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting"
     clone_git_repo https://github.com/zsh-users/zsh-history-substring-search.git "${ZSH_CUSTOM}/plugins/zsh-history-substring-search"
@@ -122,6 +121,7 @@ install_plugins() {
     clone_git_repo https://github.com/olivierverdier/zsh-git-prompt.git "${ZSH_CUSTOM}/plugins/zsh-git-prompt"
     clone_git_repo https://github.com/chrissicool/zsh-256color.git "${ZSH_CUSTOM}/plugins/zsh-256color"
     clone_git_repo https://github.com/clvv/fasd.git "${ZSH_CUSTOM}/plugins/fasd"
+    # Removed alias-tips plugin
 }
 
 # Function to install fzf
@@ -155,7 +155,7 @@ set_default_shell() {
 # Function to download .p10k.zsh
 download_p10k_zsh() {
     echo -e "${GREEN}Downloading .p10k.zsh configuration...${NC}"
-    curl -fsSL https://raw.githubusercontent.com/Mavrag/mavrag-zsh-setup/main/.p10k.zsh -o "$USER_HOME/.p10k.zsh"
+    curl -fsSL https://raw.githubusercontent.com/Mavrag/mav_zsh/main/.p10k.zsh -o "$USER_HOME/.p10k.zsh"
 }
 
 # Function to update .zshrc
@@ -168,7 +168,8 @@ update_zshrc() {
 
     echo -e "${GREEN}Updating .zshrc configuration...${NC}"
     sed -i 's/^ZSH_THEME=.*/ZSH_THEME="powerlevel10k\/powerlevel10k"/' "$ZSHRC"
-    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd zsh-interactive-cd virtualenv rbw)/' "$ZSHRC"
+    # Removed alias-tips from plugins
+    sed -i 's/^plugins=.*/plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search zsh-completions zsh-better-npm-completion zsh-256color fasd zsh-interactive-cd virtualenv rbw )/' "$ZSHRC"
     grep -qxF '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' "$ZSHRC" || echo '[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh' >> "$ZSHRC"
 }
 
@@ -184,7 +185,6 @@ main() {
     detect_os
     check_sudo
     install_packages
-    install_dependencies
     install_oh_my_zsh
     install_plugins
     install_fzf
