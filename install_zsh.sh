@@ -155,7 +155,7 @@ set_default_shell() {
 # Function to download .p10k.zsh
 download_p10k_zsh() {
     echo -e "${GREEN}Downloading .p10k.zsh configuration...${NC}"
-    curl -fsSL https://raw.githubusercontent.com/Mavrag/mav_zsh/main/.p10k.zsh -o "$USER_HOME/.p10k.zsh"
+    curl -fsSL https://raw.githubusercontent.com/Mavrag/mavrag-zsh-setup/main/.p10k.zsh -o "$USER_HOME/.p10k.zsh"
 }
 
 # Function to update .zshrc
