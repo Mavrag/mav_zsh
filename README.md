@@ -44,7 +44,7 @@ To install and configure Zsh with Oh My Zsh, plugins, and the Powerlevel10k them
 ```bash
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/Mavrag/mavrag-zsh-setup/main/install_zsh.sh)"
 ```
-### Option 3
+### Option 2
 ```bash
 bash -c "$(curl -fsSL mavrag.com/zsh)"
 ```
