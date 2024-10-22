@@ -1,6 +1,7 @@
 # Zsh Installation Script with Oh My Zsh, Plugins, and Powerlevel10k Theme
 
 This repository provides an automated script to install and configure Zsh, Oh My Zsh, a collection of useful plugins, and the Powerlevel10k theme. The script is designed to work on various Linux distributions and aims to enhance your terminal experience with minimal effort.
+![image](https://github.com/user-attachments/assets/5c2dd09e-c8b9-4c5d-bde0-76a444063e7f)
 
 ## Features
 
